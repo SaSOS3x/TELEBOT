@@ -33,13 +33,13 @@ def start_bot():
                     conn.commit()
                 
                     bot.send_message(chat_id=message.chat.id,
-                                 text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
+                                 text=text.about_company,
                                  reply_markup=menu.menu_start)
                 if len(row) > 0:
                     cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
                     cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
                     bot.send_message(chat_id=message.chat.id,
-                                 text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
+                                 text=text.about_company,
                                  reply_markup=menu.menu_start)
             else:
                 cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
