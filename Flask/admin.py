@@ -13,7 +13,7 @@ os.chdir(path)
 
 @app.route('/')
 def index():
-    return render_template('auth.html')
+    return render_template('auth.html',title='Authorization')
 
 @app.route('/auth_token',methods=["POST"])
 def auth_token():

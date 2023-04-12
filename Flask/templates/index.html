@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 {%block content%}
-    <div class="block_people">
-        % for i in people
-        <div class="card_people">
-            <p>{{i[0]}}</p>
-            <p>{{i[1]}}</p>
-            <p>{{i[2]}}</p>
-            <p>{{i[3]}}</p>
+    <header>
+        <div class="container">
+            <div class="wrapper_header">
+                <p class="admin_logged">{{login}}</p>
+    <a href="/" class="exit"><img src="{{ url_for('static', filename='img/exit.svg') }}" alt="" class="icon_white"></a>
+            </div> 
         </div>
+    </header>
+    <div class="block_people">
+        {% for i in people%}
+        <div class="card_people">
+            <p class="number">№{{people.index(i)+1}}</p>
+            <p class="date_register">{{i[2]}}</p>
+            <p class="id">id: {{i[0]}}</p>
+            <p class="username">username: {{i[1]}}</p>
+        </div>
+        {%endfor%}
     </div>
 {%endblock%}
