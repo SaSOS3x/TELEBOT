@@ -7,16 +7,24 @@ import text
 import logic
 from random import choice
 from string import ascii_uppercase
+import os
 #**********************************************************************************************************************
-def start_bot():
 
+puff = os.getcwd()
+os.chdir('..')
+conn = sqlite3.connect('base_pyramid.sqlite')
+cursor = conn.cursor()
+os.chdir(puff)
+
+def start_bot():
+    
     bot = telebot.TeleBot(settings.BOT_TOKEN)
+    
 #**********************************************************************************************************************
     @bot.message_handler(commands=['start'])
     def start(message):
         if message.from_user.username != None:
-            conn = sqlite3.connect('base_pyramid.sqlite')
-            cursor = conn.cursor()
+            
 
             cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
             row = cursor.fetchall()
@@ -59,8 +67,6 @@ def start_bot():
 #**********************************************************************************************************************
     @bot.callback_query_handler(func=lambda call: True)
     def handler_call(call):
-        conn = sqlite3.connect('base_pyramid.sqlite')
-        cursor = conn.cursor()
         
         chat_id = call.message.chat.id #И user_id
         message_id = call.message.message_id
@@ -132,7 +138,10 @@ def start_bot():
             conn.commit()
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text='',
+                                  text='Вы находитесь в главном меню\n\n'\
+                                       'Ваш индетификатор внутри системы: "{chat.id}"\n'\
+                                       'Ваш логин: "{message.from_user.username}"\n'\
+                                       'Ваша должность:""',
                                   reply_markup=menu.menu_main)
 
 
