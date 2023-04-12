@@ -26,12 +26,16 @@ def auth_token():
     cursor.execute('SELECT login,pass FROM admin')
     for i in list(cursor.fetchall()):
         if (log,passw) == i:
-            access = True
+              access =True
+              break
+        else: 
+             access=  False
+    print(str((log,passw))+'=='+str(i))
+    if access:
             return render_template('index.html', people=cursor.execute('SELECT user_id,login,data,access FROM users').fetchall()
                                    ,title='Admin panel', login = log)
                                    
-        else:
-            access = False
+    else:
             return render_template('auth.html',title='Authorization')
         
 @app.route('/declare')
