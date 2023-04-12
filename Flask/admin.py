@@ -1,11 +1,15 @@
 from flask import Flask,render_template,request
 from hashlib import md5
+import sqlite3
+import os
 
-
+path = os.getcwd()
 app = Flask(__name__)
 
-
-
+os.chdir('..')
+db = sqlite3.connect('base_pyramid.db',check_same_thread=False)
+cursor = db.cursor()
+os.chdir(path)
 
 @app.route('/')
 def index():
@@ -16,14 +20,11 @@ def auth_token():
     log = md5(request.form['auth_login'].encode('utf-8')).hexdigest()
     print(request.form['auth_password'])
     passw = md5(request.form['auth_password'].encode('utf-8')).hexdigest()
-    with open('pass.txt','r+') as admin:
-        rows = admin.readlines()
-        for row in rows:
-            row.split(' ')
-            if md5(row[0].encode('utf-8')).hexdigest() == log and md5(row[1].encode('utf-8')).hexdigest() == passw:
-                return render_template('index.html')
-            else:
-                return '<h1>WRONG PASSWORD or LOGIN</h1>'
+    global cursor
+    cursor.execute('SELECT login,pass FROM admin')
+    for i in list(cursor.fetchall()):
+        if (log,passw) == i:
+            return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
