@@ -5,7 +5,6 @@ import datetime
 import menu
 import text
 import logic
-from telebot import types
 from random import choice
 from string import ascii_uppercase
 #**********************************************************************************************************************
