@@ -60,11 +60,12 @@ body
 .block_people
 {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: start;
     margin: 60px 0;
     border-radius: 30px;
     padding: 20px 15px;
+    height: 900px;
     background-color: #282e81;
     flex-wrap: wrap;
 }
