@@ -12,7 +12,7 @@ import os
 
 puff = os.getcwd()
 os.chdir('..')
-conn = sqlite3.connect('base_pyramid.sqlite')
+conn = sqlite3.connect('base_pyramid.db', check_same_thread=False)
 cursor = conn.cursor()
 os.chdir(puff)
 
@@ -25,7 +25,6 @@ def start_bot():
     def start(message):
         if message.from_user.username != None:
             
-
             cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
             row = cursor.fetchall()
 
@@ -35,7 +34,7 @@ def start_bot():
 
                 if len(row) == 0:
 
-                    cursor.execute(f'INSERT INTO users VALUES ("{message.chat.id}", "{message.from_user.username}", "{datetime.datetime.now()}", "no")')
+                    cursor.execute(f'INSERT INTO users VALUES ("{message.chat.id}", "{message.from_user.username}", "{datetime.datetime.now()}", "no", "none")')
                     
                     conn.commit()
                 
@@ -136,12 +135,18 @@ def start_bot():
         if call.data == 'new_worker':
             cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
             conn.commit()
+            cursor.execute(f'SELECT class FROM users WHERE user_id = "{chat_id}"')
+            name = cursor.fetchone()
+            if name == 'none':
+                clas = f'Ваша должность: нету должности\n\n'\
+                       'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'
+            else:
+                clas = f'Ваша должность: {name}'
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
                                   text='Вы находитесь в главном меню\n\n'\
-                                       'Ваш индетификатор внутри системы: "{chat.id}"\n'\
-                                       'Ваш логин: "{message.from_user.username}"\n'\
-                                       'Ваша должность:""',
+                                       f'Ваш индетификатор внутри системы: "{chat_id}"\n'
+                                       + clas,
                                   reply_markup=menu.menu_main)
 
 
