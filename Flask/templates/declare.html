@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{%block content%}
+    <header>
+            <div class="wrapper_header">
+                <p class="admin_logged">{{login}}</p>
+                <a href="#" onclick="history.back()" class="menu_text">Персонал</a>
+    <a href="/" class="exit"><img src="{{ url_for('static', filename='img/exit.svg') }}" alt="" class="icon_white"></a>
+            </div> 
+    </header>
+    <h1 class="title_page">Сделать обьявление</h1>
+    <form action={{ url_for('sendmessage') }} method="post" class="panel_message">
+        <label class="title_input" for="title_message">Заголовок</label>
+        <input type="text" name="title_message" class="title_input">
+        <label class="title_input" for="title_message">Сообщение</label>
+        <textarea name="text_message" id="" cols="30" rows="10" class="text_input"></textarea>
+        <input type="submit" class="subbutton" class="submit_b">
+    </form>
+    {%endblock%}

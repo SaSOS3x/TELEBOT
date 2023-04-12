@@ -24,7 +24,7 @@ input:focus
 
 }
 body
-{   background-color: #202020;
+{   background-color: #a5a5a5;
     font-family: 'Inter', sans-serif;
 }
 .auth_panel
@@ -42,6 +42,7 @@ body
     background-color: #fff;
     border-radius: 15px;
     padding: 50px 30px;
+    margin-left: 10px;
 
 }
 .number{
@@ -61,21 +62,43 @@ body
     display: flex;
     align-items: center;
     justify-content: start;
-    margin: 50px;
+    margin: 60px 0;
     border-radius: 30px;
-    padding: 30px;
+    padding: 20px 15px;
     background-color: #282e81;
+    flex-wrap: wrap;
+}
+a{
+    text-decoration: none;
 }
 .container{
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 30px;
+    background-color: #e2e2e2;
+    padding-bottom: 100px;  
+}
+.menu_text:hover{
+    transition: 0.3s ease-in-out;
+    border-bottom: 1px solid #202020;
+}
+.menu_text{
+    transition: 0.3s ease-in-out;
+    padding-bottom: 5px;
+    color: #202020;
 }
 .admin_logged{
     color: #202020;
     font-size: 30px;
 }
+.submit_b{
+    background-color: #fff;
+}
+.exit:hover{
+    transform: scale(0.9);
+}
 .exit{
+    transition: 0.3s ease-in-out;
     color: #202020;
     text-decoration: none;
     display: flex;
@@ -84,15 +107,40 @@ body
     width: 70px;
 }
 header{
-    background-color: #fff;
     width: 100%;
+    margin-bottom: 100px;
+}
+.title_input{
+    width: 200px;
+    margin-bottom: 20px;
+}
+.panel_message{
+    padding: 30px 0 100px 0;
+    display: flex;
+    flex-direction: column;
 }
 .icon_white{
     color: #202020;
     width: 30px;
     height: 30px;
 }
-
+.subbutton{
+    margin-top: 20px;
+    width: 200px;
+}
+textarea:focus
+{
+    outline: 0;
+}
+textarea{
+    padding: 20px;
+    border-radius: 15px;
+    resize: none;
+}
+.text_input{
+    
+    text-align: left;
+}
 .wrapper_header{
     padding: 20px 0;
     display: flex;
