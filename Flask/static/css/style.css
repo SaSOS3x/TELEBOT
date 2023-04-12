@@ -37,3 +37,31 @@ body
     flex-direction: column;
 
 }
+.card_people{
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 50px 30px;
+
+}
+.number{
+    font-size: 20px;
+}
+.date_register
+{
+    margin: 0 0 10px 0;
+}
+.username
+{
+    font-size: 24px;
+    font-weight: 700;
+}
+.block_people
+{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: 50px;
+    border-radius: 30px;
+    padding: 30px;
+    background-color: #282e81;
+}

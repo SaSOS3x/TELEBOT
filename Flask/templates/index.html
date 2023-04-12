@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {%block content%}
     <div class="block_people">
-        % for i in people
+        {% for i in people%}
         <div class="card_people">
-            <p>{{i[0]}}</p>
-            <p>{{i[1]}}</p>
-            <p>{{i[2]}}</p>
-            <p>{{i[3]}}</p>
+            <p class="number">№{{people.index(i)+1}}</p>
+            <p class="date_register">{{i[2]}}</p>
+            <p class="id">id: {{i[0]}}</p>
+            <p class="username">username: {{i[1]}}</p>
         </div>
+        {%endfor%}
     </div>
 {%endblock%}
