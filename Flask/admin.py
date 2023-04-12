@@ -17,14 +17,17 @@ def index():
 
 @app.route('/auth_token',methods=["POST"])
 def auth_token():
-    log = md5(request.form['auth_login'].encode('utf-8')).hexdigest()
-    print(request.form['auth_password'])
+    log = request.form['auth_login']
     passw = md5(request.form['auth_password'].encode('utf-8')).hexdigest()
     global cursor
     cursor.execute('SELECT login,pass FROM admin')
     for i in list(cursor.fetchall()):
         if (log,passw) == i:
-            return render_template('index.html')
+            
+            return render_template('index.html', people=cursor.execute('SELECT user_id,login,data,access FROM users').fetchall()
+                                   ,title='Admin panel', login = log)
+        else:
+            return render_template('auth.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

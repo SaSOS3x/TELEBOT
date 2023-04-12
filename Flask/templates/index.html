@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>SUCCSES</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{%block content%}
+    <div class="block_people">
+        % for i in people
+        <div class="card_people">
+            <p>{{i[0]}}</p>
+            <p>{{i[1]}}</p>
+            <p>{{i[2]}}</p>
+            <p>{{i[3]}}</p>
+        </div>
+    </div>
+{%endblock%}
