@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {%block content%}
+    <header>
+        <div class="container">
+            <div class="wrapper_header">
+                <p class="admin_logged">{{login}}</p>
+    <a href="/" class="exit"><img src="{{ url_for('static', filename='img/exit.svg') }}" alt="" class="icon_white"></a>
+            </div> 
+        </div>
+    </header>
     <div class="block_people">
         {% for i in people%}
         <div class="card_people">

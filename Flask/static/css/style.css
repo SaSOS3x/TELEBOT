@@ -17,6 +17,7 @@ input:focus
     outline: 0;
 }
 .title_page{
+    color: #282e81;
     font-size: 36px;
     margin-bottom: 40px;
     font-variant-caps:titling-caps;
@@ -29,7 +30,7 @@ body
 .auth_panel
 {   margin: auto auto;
     max-width: 500px;
-    padding: 100px 50px;
+    padding: 100px 0;
     background-color: #e2e2e2;
     display: flex;
     justify-content: center;
@@ -64,4 +65,37 @@ body
     border-radius: 30px;
     padding: 30px;
     background-color: #282e81;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.admin_logged{
+    color: #202020;
+    font-size: 30px;
+}
+.exit{
+    color: #202020;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70px;
+}
+header{
+    background-color: #fff;
+    width: 100%;
+}
+.icon_white{
+    color: #202020;
+    width: 30px;
+    height: 30px;
+}
+
+.wrapper_header{
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
