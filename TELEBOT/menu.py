@@ -47,3 +47,7 @@ menu_next.add(
     types.InlineKeyboardButton(text='Инструктор', callback_data='instructor'),
     types.InlineKeyboardButton(text='Менеджер', callback_data='manager')
 )
+start_new_worker = types.InlineKeyboardMarkup(row_width=2)
+start_new_worker.add(
+    types.InlineKeyboardButton(text='Стать новым сотрудником', callback_data='new_worker'),
+)

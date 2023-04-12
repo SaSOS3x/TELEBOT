@@ -68,7 +68,7 @@ def start_bot():
         if call.data == 'new':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.access_no_info,
+                                  text=text.new_worker,
                                   reply_markup=menu.menu_next)
         
         if call.data == 'no_new':
@@ -82,26 +82,60 @@ def start_bot():
         if call.data == 'pizza_maker':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.about_pizzamaker,
-                                  reply_markup=menu.menu_next)
+                                  text=text.about_pizzamaker)
+            bot.send_message(chat_id=chat_id,
+                             text='Твой дресс-код:\n\n' + text.pizzamaker_stuff)
+            bot.send_message(chat_id=chat_id,
+                             text=text.about_help)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.about_bot,
+                                  reply_markup=menu.start_new_worker)
             
         if call.data == 'cassier':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.about_cassir,
-                                  reply_markup=menu.menu_next)
+                                  text=text.about_cassir)
+            bot.send_message(chat_id=chat_id,
+                             text='Твой дресс-код:\n\n' + text.cassier_stuff)
+            bot.send_message(chat_id=chat_id,
+                             text=text.about_help)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.about_bot,
+                                  reply_markup=menu.start_new_worker)
             
         if call.data == 'instructor':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.about_teacher,
-                                  reply_markup=menu.menu_next)
-        
+                                  text=text.about_teacher)
+            bot.send_message(chat_id=chat_id,
+                             text='Твой дресс-код:\n\n' + text.teacher_stuff)
+            bot.send_message(chat_id=chat_id,
+                             text=text.about_help)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.about_bot,
+                                  reply_markup=menu.start_new_worker)
+
         if call.data == 'manager':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.about_manager,
-                                  reply_markup=menu.menu_next)
+                                  text=text.about_manager)
+            bot.send_message(chat_id=chat_id,
+                             text='Твой дресс-код:\n\n' + text.manager_stuff)
+            bot.send_message(chat_id=chat_id,
+                             text=text.about_help)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.about_bot,
+                                  reply_markup=menu.start_new_worker)
+#***********************************************************************************
+        if call.data == 'new_worker':
+            cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
+            conn.commit()
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text='',
+                                  reply_markup=menu.menu_main)
+
+
         
                                   
         
