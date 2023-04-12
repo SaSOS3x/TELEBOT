@@ -50,9 +50,22 @@ def start_bot():
             else:
                 cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
                 cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
+
+
+                cursor.execute(f'SELECT * FROM users WHERE user_id = "{message.chat.id}"')
+                name = cursor.fetchone()[4]
+                if name == 'none':
+                    clas = f'Ваша должность: нету должности\n\n'\
+                       'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'
+                else:
+                    clas = f'Ваша должность: {name}'
                 bot.send_message(chat_id=message.chat.id,
-                             text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
-                             reply_markup=menu.menu_main)
+                                  text='Вы находитесь в главном меню\n\n'\
+                                       f'Ваш индетификатор внутри системы: "{message.chat.id}"\n'
+                                       + clas,
+                                  reply_markup=menu.menu_main)
+                
+                
         else:
            bot.send_message(chat_id=message.chat.id,
                              text='Введите username в настройках телеграма для регистрации')
@@ -135,8 +148,8 @@ def start_bot():
         if call.data == 'new_worker':
             cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
             conn.commit()
-            cursor.execute(f'SELECT class FROM users WHERE user_id = "{chat_id}"')
-            name = cursor.fetchone()
+            cursor.execute(f'SELECT * FROM users WHERE user_id = "{chat_id}"')
+            name = cursor.fetchone()[4]
             if name == 'none':
                 clas = f'Ваша должность: нету должности\n\n'\
                        'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'

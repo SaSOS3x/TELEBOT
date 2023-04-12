@@ -30,7 +30,6 @@ functions_access_no.add(
 
 menu_main = types.InlineKeyboardMarkup(row_width=2)
 menu_main.add(
-    types.InlineKeyboardButton(text='Профиль', callback_data='profile'),
     types.InlineKeyboardButton(text='О компании', callback_data='information'),
     types.InlineKeyboardButton(text='Обучение', callback_data='learning'),
     types.InlineKeyboardButton(text='База знаний', callback_data='knowelege_base')
