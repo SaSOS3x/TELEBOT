@@ -34,7 +34,7 @@ def start_bot():
 
                 if len(row) == 0:
 
-                    cursor.execute(f'INSERT INTO users VALUES ("{message.chat.id}", "{message.from_user.username}", "{datetime.datetime.now()}", "no", "none")')
+                    cursor.execute(f'INSERT INTO users VALUES ("{message.chat.id}", "{message.from_user.username}", "{datetime.datetime.now()}", "no")')
                     
                     conn.commit()
                 
@@ -65,7 +65,7 @@ def start_bot():
                                        + clas,
                                   reply_markup=menu.menu_main)
                 
-                
+
         else:
            bot.send_message(chat_id=message.chat.id,
                              text='Введите username в настройках телеграма для регистрации')
@@ -161,6 +161,37 @@ def start_bot():
                                        f'Ваш индетификатор внутри системы: "{chat_id}"\n'
                                        + clas,
                                   reply_markup=menu.menu_main)
+#***********************************************************************************        
+        if call.data == 'information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text='',
+                                  
+
+            )
+        if call.data == 'product_line':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text='',
+                                  
+
+            )
+        if call.data == 'company_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text='',
+                                  
+
+            )
+        if call.data == 'back_to_main_menu':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text='',
+                                  
+
+            )
+        
+
 
 
         

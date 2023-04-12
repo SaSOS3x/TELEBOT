@@ -50,3 +50,9 @@ start_new_worker = types.InlineKeyboardMarkup(row_width=2)
 start_new_worker.add(
     types.InlineKeyboardButton(text='Стать новым сотрудником', callback_data='new_worker'),
 )
+menu_information = types.InlineKeyboardMarkup(row_width=2)
+menu_information.add(
+    types.InlineKeyboardButton(text='Продуктовая линейка', callback_data='product_line'),
+    types.InlineKeyboardButton(text='Информация о компании', callback_data='company_information'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu'),
+)
