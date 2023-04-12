@@ -17,7 +17,19 @@
             <p class="date_register">{{i[2]}}</p>
             <p class="id">id: {{i[0]}}</p>
             <p class="username">username: {{i[1]}}</p>
-        </div>
+            {% for c in course%}
+            {% if c[0] == i[0] %}
+            <div class="course_list">
+                <p>Pizzamaker: {{c[1]}}</p>
+                <p>Manager: {{c[2]}}</p>
+                <p>Teacher: {{c[3]}}</p>
+                <p>Cassier: {{c[4]}}</p>
+                <p>Safety: {{c[5]}}</p>
+                <p>Company: {{c[6]}}</p>
+            </div>
+            {%endif%}
+        {%endfor%}
+    </div>
         {%endfor%}
     </div>
 {%endblock%}
