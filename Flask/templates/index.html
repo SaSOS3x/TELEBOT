@@ -4,10 +4,12 @@
         <div class="container">
             <div class="wrapper_header">
                 <p class="admin_logged">{{login}}</p>
+                <a href="/declare" class="menu_text">Обьявление</a>
     <a href="/" class="exit"><img src="{{ url_for('static', filename='img/exit.svg') }}" alt="" class="icon_white"></a>
             </div> 
         </div>
     </header>
+    <h1 class="title_page">Персонал</h1>
     <div class="block_people">
         {% for i in people%}
         <div class="card_people">
