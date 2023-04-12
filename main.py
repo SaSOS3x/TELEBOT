@@ -70,13 +70,15 @@ def start_bot():
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
                                   text=text.access_no_info,
-                                  reply_markup=menu.functions_access_no)
+                                  reply_markup=menu.menu_next)
         
         if call.data == 'no_new':
+            cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
+            conn.commit()
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.access_no_info,
-                                  reply_markup=menu.functions_access_no)
+                                  text=text.access_yes_info,
+                                  reply_markup=menu.menu_main)
                                   
         
 #**********************************************************************************************************************
