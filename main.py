@@ -34,19 +34,19 @@ def start_bot():
                 
                     bot.send_message(chat_id=message.chat.id,
                                  text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
-                                 reply_markup=menu.menu_access_no)
+                                 reply_markup=menu.menu_start)
                 if len(row) > 0:
                     cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
                     cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
                     bot.send_message(chat_id=message.chat.id,
                                  text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
-                                 reply_markup=menu.menu_access_no)
+                                 reply_markup=menu.menu_start)
             else:
                 cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
                 cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
                 bot.send_message(chat_id=message.chat.id,
                              text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
-                             reply_markup=menu.menu_access_yes)
+                             reply_markup=menu.menu_main)
         else:
            bot.send_message(chat_id=message.chat.id,
                              text='Введите username в настройках телеграма для регистрации')
@@ -66,23 +66,19 @@ def start_bot():
         chat_id = call.message.chat.id #И user_id
         message_id = call.message.message_id
         
-        if call.data == 'test_no_access':
+        if call.data == 'new':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.access_no_info,
+                                  reply_markup=menu.functions_access_no)
+        
+        if call.data == 'no_new':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
                                   text=text.access_no_info,
                                   reply_markup=menu.functions_access_no)
                                   
-        if call.data == 'def_test':
-            bot.edit_message_text(chat_id=chat_id,
-                                  message_id=message_id,
-                                  text=text.def_test,
-                                  reply_markup=menu.functions_access_no) #изменить для теста
-                                  
-        if call.data == 'back':
-            bot.edit_message_text(chat_id=chat_id,
-                                  message_id=message_id,
-                                  text=text.back,
-                                  reply_markup=menu.menu_access_no)
+        
 #**********************************************************************************************************************
     bot.polling(none_stop=True)
 
