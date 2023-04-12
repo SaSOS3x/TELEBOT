@@ -78,6 +78,31 @@ def start_bot():
                                   message_id=message_id,
                                   text=text.access_yes_info,
                                   reply_markup=menu.menu_main)
+            
+        if call.data == 'pizza_maker':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.about_pizzamaker,
+                                  reply_markup=menu.menu_next)
+            
+        if call.data == 'cassier':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.about_cassir,
+                                  reply_markup=menu.menu_next)
+            
+        if call.data == 'instructor':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.about_teacher,
+                                  reply_markup=menu.menu_next)
+        
+        if call.data == 'manager':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.about_manager,
+                                  reply_markup=menu.menu_next)
+        
                                   
         
 #**********************************************************************************************************************
