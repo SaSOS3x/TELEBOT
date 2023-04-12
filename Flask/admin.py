@@ -25,6 +25,8 @@ def auth_token():
     for i in list(cursor.fetchall()):
         if (log,passw) == i:
             return render_template('index.html')
+        else:
+            return render_template('auth.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

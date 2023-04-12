@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+input
+{
+    font-family: 'Inter', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    border:#202020 1px solid;
+    margin: 10px 0;
+}
+input:focus
+{
+    outline: 0;
+}
+.title_page{
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-variant-caps:titling-caps;
+
+}
+body
+{   background-color: #202020;
+    font-family: 'Inter', sans-serif;
+}
+.auth_panel
+{   margin: auto auto;
+    max-width: 500px;
+    padding: 100px 50px;
+    background-color: #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
