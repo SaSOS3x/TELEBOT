@@ -33,13 +33,13 @@ def start_bot():
                     conn.commit()
                 
                     bot.send_message(chat_id=message.chat.id,
-                                 text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
+                                 text=text.about_company,
                                  reply_markup=menu.menu_start)
                 if len(row) > 0:
                     cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
                     cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
                     bot.send_message(chat_id=message.chat.id,
-                                 text=text.start_menu.format(name=message.from_user.first_name, id=message.chat.id),
+                                 text=text.about_company,
                                  reply_markup=menu.menu_start)
             else:
                 cursor.execute(f'SELECT * FROM access WHERE user_id = "{message.chat.id}"')
@@ -70,13 +70,15 @@ def start_bot():
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
                                   text=text.access_no_info,
-                                  reply_markup=menu.functions_access_no)
+                                  reply_markup=menu.menu_next)
         
         if call.data == 'no_new':
+            cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
+            conn.commit()
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text=text.access_no_info,
-                                  reply_markup=menu.functions_access_no)
+                                  text=text.access_yes_info,
+                                  reply_markup=menu.menu_main)
                                   
         
 #**********************************************************************************************************************
