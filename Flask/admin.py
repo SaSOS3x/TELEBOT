@@ -33,7 +33,7 @@ def auth_token():
     print(str((log,passw))+'=='+str(i))
     if access:
             return render_template('index.html', people=cursor.execute('SELECT user_id,login,data,access FROM users').fetchall()
-                                   ,title='Admin panel', login = log)
+                                   ,title='Admin panel', login = log, course=cursor.execute('SELECT * FROM courses').fetchall(), classes=cursor.execute('SELECT * FROM class').fetchall())
                                    
     else:
             return render_template('auth.html',title='Authorization')

@@ -43,6 +43,11 @@ body
     border-radius: 15px;
     padding: 50px 30px;
     margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 
 }
 .number{
@@ -57,10 +62,13 @@ body
     font-size: 24px;
     font-weight: 700;
 }
+.course_list p{
+    text-align: right;
+}
 .block_people
 {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: start;
     margin: 60px 0;
     border-radius: 30px;
@@ -75,8 +83,7 @@ a{
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;
-    background-color: #e2e2e2;
-    padding-bottom: 100px;  
+    background-color: #e2e2e2;  
 }
 .menu_text:hover{
     transition: 0.3s ease-in-out;
