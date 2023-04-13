@@ -77,7 +77,7 @@ menu_safety_information.add(
 menu_out_information = types.InlineKeyboardMarkup(row_width=2)
 menu_out_information.add(
     types.InlineKeyboardButton(text='Зоны', callback_data='zones_information'),
-    types.InlineKeyboardButton(text='Дресс-код', callback_data='dress-code_information'),
+    types.InlineKeyboardButton(text='Дресс-код', callback_data='dress_code_information'),
     types.InlineKeyboardButton(text='Назад', callback_data='back_to_knowelege_base_menu')
 )
 menu_citchen_information = types.InlineKeyboardMarkup(row_width=2)

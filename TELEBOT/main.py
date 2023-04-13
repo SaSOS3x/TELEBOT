@@ -210,9 +210,103 @@ def start_bot():
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
                                   text=text.knowelege_base,
-                                  reply_markup=menu.menu_knowelege_base)         
+                                  reply_markup=menu.menu_knowelege_base)
         
-#**********************************************************************************************************************
+        if call.data == 'out_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.out_information_text,
+                                  reply_markup=menu.menu_out_information)
+        
+        if call.data == 'citchen_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.citchen_information_text,
+                                  reply_markup=menu.menu_citchen_information)
+        
+        if call.data == 'safety_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.safety_information_text,
+                                  reply_markup=menu.menu_safety_information)
+        
+        if call.data == 'back_to_knowelege_base_menu':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.knowelege_base,
+                                  reply_markup=menu.menu_knowelege_base)
+#********out_information*************************************************************************************************************         
+        if call.data == 'zones_information':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            p = open('img/company.png', 'rb')
+            bot.send_photo(chat_id=chat_id,
+                                  photo=p,
+                                  caption=text.base_information_zones,
+                                  reply_markup=menu.menu_back_to_out_information)
+            
+        if call.data == 'dress_code_information':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.dress_code_information_text,
+                                  reply_markup=menu.menu_back_to_out_information)
+            
+        if call.data == 'back_to_out_information':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.out_information_text,
+                                  reply_markup=menu.menu_out_information)
+#********citchen_information*************************************************************************************************************
+        if call.data == 'perfect_pizza_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.perfect_pizza_information_text,
+                                  reply_markup=menu.menu_back_to_citchen_information)
+        
+        if call.data == 'line_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.line_information_text,
+                                  reply_markup=menu.menu_back_to_citchen_information)
+        
+        if call.data == 'markup_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.markup_information_text,
+                                  reply_markup=menu.menu_back_to_citchen_information)
+        
+        if call.data == 'clean_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.clean_information_text,
+                                  reply_markup=menu.menu_back_to_citchen_information)
+            
+        if call.data == 'back_to_citchen_information':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.citchen_information_text,
+                                  reply_markup=menu.menu_citchen_information)
+#********safety_information*************************************************************************************************************
+        if call.data == 'safety_information_citchen':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.safety_information_citchen_text,
+                                  reply_markup=menu.menu_back_to_safety_information)
+        
+        if call.data == 'safety_information_fire':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            p = open('img/evacuation.png', 'rb')
+            bot.send_photo(chat_id=chat_id,
+                                  photo=p,
+                                  caption=text.safety_information_fire,
+                                  reply_markup=menu.menu_back_to_safety_information)
+            
+        if call.data == 'back_to_safety_information':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.safety_information_text,
+                                  reply_markup=menu.menu_safety_information)
+#********Обучение*************************************************************************************************************
+
     bot.polling(none_stop=True)
 
 start_bot()
