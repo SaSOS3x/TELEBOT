@@ -51,7 +51,7 @@ def sendmessage():
     global cursor
     title=request.form['title_message']
     text=request.form['text_message']
-    bot = telebot.TeleBot('5703032509:AAGbUu378C8wUa3RYbTLSO9LkeTFLAXZcW4')
+    bot = telebot.TeleBot('6192821449:AAEt3GH-QOlrE99EM3Ndq2L2bNNVkNw1nTk')
     for i in cursor.execute('SELECT user_id FROM users'):
         bot.send_message(i[0], f'<b>{title}</b>\n{text}',parse_mode='HTML')
     return render_template('declare.html', login=log,title='Declare')
@@ -59,4 +59,4 @@ def sendmessage():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

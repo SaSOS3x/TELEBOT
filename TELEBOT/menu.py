@@ -102,3 +102,28 @@ menu_back_to_safety_information.add(
     types.InlineKeyboardButton(text='Назад', callback_data='back_to_safety_information')
 )
 #*****************Тесты*****************************************************************************
+menu_learning_lvl0 = types.InlineKeyboardMarkup(row_width=1)
+menu_learning_lvl0.add(
+    types.InlineKeyboardButton(text='Техника безопасности', callback_data='test_safety_instruction'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu')
+)
+menu_learning_lvl1 = types.InlineKeyboardMarkup(row_width=1)
+menu_learning_lvl1.add(
+    types.InlineKeyboardButton(text='Техника безопасности', callback_data='test_safety_instruction'),\
+    types.InlineKeyboardButton(text='О компании', callback_data='test_company'),\
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu')
+)
+menu_learning_lvl2 = types.InlineKeyboardMarkup(row_width=1)
+menu_learning_lvl2.add(
+    types.InlineKeyboardButton(text='Техника безопасности', callback_data='test_safety_instruction'),\
+    types.InlineKeyboardButton(text='О компании', callback_data='test_company'),\
+    types.InlineKeyboardButton(text='Пиццемейкер', callback_data='test_pizzamaker'),\
+    types.InlineKeyboardButton(text='Кассир', callback_data='test_cassier'),\
+    types.InlineKeyboardButton(text='Менеджер', callback_data='test_manager'),\
+    types.InlineKeyboardButton(text='Инструктор', callback_data='test_teacher'),\
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu')
+)
+menu_back_to_learning_menu = types.InlineKeyboardMarkup(row_width=1)
+menu_back_to_learning_menu.add(
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_learning_menu')
+)
