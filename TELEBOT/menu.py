@@ -50,9 +50,55 @@ start_new_worker = types.InlineKeyboardMarkup(row_width=2)
 start_new_worker.add(
     types.InlineKeyboardButton(text='Стать новым сотрудником', callback_data='new_worker'),
 )
-menu_information = types.InlineKeyboardMarkup(row_width=2)
+menu_information = types.InlineKeyboardMarkup(row_width=1)
 menu_information.add(
     types.InlineKeyboardButton(text='Продуктовая линейка', callback_data='product_line'),
     types.InlineKeyboardButton(text='Информация о компании', callback_data='company_information'),
     types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu'),
 )
+menu_back_to_information = types.InlineKeyboardMarkup(row_width=2)
+menu_back_to_information.add(
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_menu_information')
+)
+#***************************************************************************************************
+menu_knowelege_base = types.InlineKeyboardMarkup(row_width=2)
+menu_knowelege_base.add(
+    types.InlineKeyboardButton(text='Общая информация', callback_data='out_information'),
+    types.InlineKeyboardButton(text='Кухня', callback_data='citchen_information'),
+    types.InlineKeyboardButton(text='Техника безопасности', callback_data='safety_information'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_main_menu')
+)
+menu_safety_information = types.InlineKeyboardMarkup(row_width=2)
+menu_safety_information.add(
+    types.InlineKeyboardButton(text='ТБ на кухне', callback_data='safety_information_citchen'),
+    types.InlineKeyboardButton(text='При пожаре', callback_data='safety_information_fire'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_knowelege_base_menu')
+)
+menu_out_information = types.InlineKeyboardMarkup(row_width=2)
+menu_out_information.add(
+    types.InlineKeyboardButton(text='Зоны', callback_data='zones_information'),
+    types.InlineKeyboardButton(text='Дресс-код', callback_data='dress-code_information'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_knowelege_base_menu')
+)
+menu_citchen_information = types.InlineKeyboardMarkup(row_width=2)
+menu_citchen_information.add(
+    types.InlineKeyboardButton(text='Идеальная пицца', callback_data='perfect_pizza_information'),
+    types.InlineKeyboardButton(text='Линия начинения', callback_data='line_information'),
+    types.InlineKeyboardButton(text='Маркировка', callback_data='markup_information'),
+    types.InlineKeyboardButton(text='Мойка', callback_data='clean_information'),
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_knowelege_base_menu')
+)
+#***************************************************************************************************
+menu_back_to_citchen_information = types.InlineKeyboardMarkup(row_width=1)
+menu_back_to_citchen_information.add(
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_citchen_information')
+)
+menu_back_to_out_information = types.InlineKeyboardMarkup(row_width=1)
+menu_back_to_out_information.add(
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_out_information')
+)
+menu_back_to_safety_information = types.InlineKeyboardMarkup(row_width=1)
+menu_back_to_safety_information.add(
+    types.InlineKeyboardButton(text='Назад', callback_data='back_to_safety_information')
+)
+#*****************Тесты*****************************************************************************

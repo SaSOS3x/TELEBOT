@@ -15,7 +15,7 @@ os.chdir('..')
 conn = sqlite3.connect('base_pyramid.db', check_same_thread=False)
 cursor = conn.cursor()
 os.chdir(puff)
-
+ 
 def start_bot():
     
     bot = telebot.TeleBot(settings.BOT_TOKEN)
@@ -35,7 +35,8 @@ def start_bot():
                 if len(row) == 0:
 
                     cursor.execute(f'INSERT INTO users VALUES ("{message.chat.id}", "{message.from_user.username}", "{datetime.datetime.now()}", "no")')
-                    
+                    cursor.execute(f'INSERT INTO class VALUES ("{message.chat.id}", "none")')
+                    cursor.execute(f'INSERT INTO courses VALUES ("{message.chat.id}", "0", "0", "0", "0", "0", "0")')
                     conn.commit()
                 
                     bot.send_message(chat_id=message.chat.id,
@@ -52,8 +53,8 @@ def start_bot():
                 cursor.execute(f'UPDATE users SET login = "{message.from_user.username}" WHERE user_id = "{message.chat.id}"')
 
 
-                cursor.execute(f'SELECT * FROM users WHERE user_id = "{message.chat.id}"')
-                name = cursor.fetchone()[4]
+                cursor.execute(f'SELECT * FROM class WHERE user_id = "{message.chat.id}"')
+                name = cursor.fetchone()[1]
                 if name == 'none':
                     clas = f'Ваша должность: нету должности\n\n'\
                        'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'
@@ -76,7 +77,7 @@ def start_bot():
             bot.send_message(chat_id=message.chat.id,
                              text=text.admin_menu.format(name=message.from_user.first_name),
                              reply_markup=menu.menu_admin)
-#**********************************************************************************************************************
+#***ВводныйИнструктаж*******************************************************************************************************************
     @bot.callback_query_handler(func=lambda call: True)
     def handler_call(call):
         
@@ -144,12 +145,12 @@ def start_bot():
             bot.send_message(chat_id=chat_id,
                                   text=text.about_bot,
                                   reply_markup=menu.start_new_worker)
-#***********************************************************************************
+#*******НовыйРаботник****************************************************************************
         if call.data == 'new_worker':
             cursor.execute(f'INSERT INTO access VALUES ("{chat_id}")')
             conn.commit()
-            cursor.execute(f'SELECT * FROM users WHERE user_id = "{chat_id}"')
-            name = cursor.fetchone()[4]
+            cursor.execute(f'SELECT * FROM class WHERE user_id = "{chat_id}"')
+            name = cursor.fetchone()[1]
             if name == 'none':
                 clas = f'Ваша должность: нету должности\n\n'\
                        'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'
@@ -161,41 +162,55 @@ def start_bot():
                                        f'Ваш индетификатор внутри системы: "{chat_id}"\n'
                                        + clas,
                                   reply_markup=menu.menu_main)
-#***********************************************************************************        
+                
+#*******Информация****************************************************************************
+               
         if call.data == 'information':
-            bot.edit_message_text(chat_id=chat_id,
+            msg = bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text='',
-                                  
-
-            )
+                                  text=text.information + text.about_help,
+                                  reply_markup=menu.menu_information) 
+            
         if call.data == 'product_line':
-            bot.edit_message_text(chat_id=chat_id,
-                                  message_id=message_id,
-                                  text='',
-                                  
+            #bot.delete_message(chat_id=chat_id,message_id=msg.message_id)
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            p = open('img/pizzes.png', 'rb')
+            bot.send_photo(chat_id=chat_id, photo=p,
+                           caption=text.company_product_line,
+                           reply_markup=menu.menu_back_to_information)
 
-            )
         if call.data == 'company_information':
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text='',
+                                  text=text.company_history,
+                                  reply_markup=menu.menu_back_to_information)
                                   
-
-            )
+        if call.data == 'back_to_menu_information':
+            bot.delete_message(chat_id=chat_id, message_id=call.message.message_id)
+            bot.send_message(chat_id=chat_id,
+                                  text=text.information,
+                                  reply_markup=menu.menu_information)
+            
         if call.data == 'back_to_main_menu':
+            cursor.execute(f'SELECT * FROM class WHERE user_id = "{chat_id}"')
+            name = cursor.fetchone()[1]
+            if name == 'none':
+                clas = f'Ваша должность: нету должности\n\n'\
+                       'Чтобы получить должность, подойдите к директору вашего учереждения и попросите его выдать вам должность'
+            else:
+                clas = f'Ваша должность: {name}'
             bot.edit_message_text(chat_id=chat_id,
                                   message_id=message_id,
-                                  text='',
-                                  
-
-            )
-        
-
-
-
-        
-                                  
+                                  text='Вы находитесь в главном меню\n\n'\
+                                       f'Ваш индетификатор внутри системы: "{chat_id}"\n'
+                                       + clas,
+                                  reply_markup=menu.menu_main)
+#********БазаЗнаний***************************************************************************        
+        if call.data == 'knowelege_base':
+            bot.edit_message_text(chat_id=chat_id,
+                                  message_id=message_id,
+                                  text=text.knowelege_base,
+                                  reply_markup=menu.menu_knowelege_base)         
         
 #**********************************************************************************************************************
     bot.polling(none_stop=True)
